@@ -1,8 +1,28 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
 import { BsDot } from "react-icons/bs";
 import { FaTrashAlt, FaHeart } from "react-icons/fa";
+import { HiPlus, HiMinus } from "react-icons/hi";
 
-export default function CartItem({ name, type, size, color, price, image }) {
+import {
+  addQuantity,
+  decQuantity,
+  removeItems,
+} from "../../utils/redux/reducers/reducer";
+
+export default function CartItem({
+  id,
+  name,
+  type,
+  size,
+  color,
+  price,
+  image,
+  amount,
+}) {
+  const dispatch = useDispatch();
+
   return (
     <div className="w-full flex items-start gap-5">
       {/* Left Content */}
@@ -24,7 +44,10 @@ export default function CartItem({ name, type, size, color, price, image }) {
             <p>Size: {size}</p>
           </div>
           <div className="flex gap-5 items-center text-gray-600 font-medium text-sm">
-            <button className="flex items-center gap-1 uppercase">
+            <button
+              onClick={() => dispatch(removeItems(id))}
+              className="flex items-center gap-1 uppercase"
+            >
               <FaTrashAlt /> Remove Item
             </button>
             <button className="flex items-center gap-1 uppercase">
@@ -38,17 +61,20 @@ export default function CartItem({ name, type, size, color, price, image }) {
         <div className="w-1/4 flex flex-col justify-between items-end">
           <div className="w-full flex flex-col items-center gap-2">
             <form className="w-11/12 flex items-center h-9 text-lg border rounded-md">
-              <button className="w-1/3 h-full border-r px-3 font-bold">
-                -
-              </button>
-              <input
-                type="text"
-                placeholder="1"
-                className="w-1/3 h-full text-base text-center focus:outline-none"
+              {amount === 1 ? (
+                <HiMinus className="w-1/3 h-full text-lg border-r p-2 bg-gray-200 fill-gray-400" />
+              ) : (
+                <HiMinus
+                  onClick={() => dispatch(decQuantity(id))}
+                  className="w-1/3 h-full text-lg border-r p-2 cursor-pointer"
+                />
+              )}
+
+              <p className="w-1/3 text-base text-center">{amount}</p>
+              <HiPlus
+                onClick={() => dispatch(addQuantity(id))}
+                className="w-1/3 h-full text-lg  border-l p-2 cursor-pointer"
               />
-              <button className="w-1/3 h-full border-l px-3 font-bold">
-                +
-              </button>
             </form>
             <p className="font-medium text-sm">(Note, 1 piece)</p>
           </div>
