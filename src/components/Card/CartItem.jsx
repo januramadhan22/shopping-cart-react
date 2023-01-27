@@ -24,13 +24,13 @@ export default function CartItem({
   const dispatch = useDispatch();
 
   return (
-    <div className="w-full flex items-start gap-5">
+    <div className="w-full flex fle items-start gap-5">
       {/* Left Content */}
       <img src={image} alt={name} className="w-32 rounded-md" />
 
-      <div className="w-full h-fit flex justify-between">
+      <div className="w-full h-fit flex flex-col md:flex-row justify-between gap-4 md:gap-0">
         {/* Middle Content */}
-        <div className="flex flex-col gap-3">
+        <div className="w-full md:w-7/12 lg:w-3/4 flex flex-col gap-3">
           <div>
             <h3 className="text-lg font-bold text-gray-600">{name}</h3>
             <div className="flex gap-0.5 items-center uppercase text-gray-600 font-medium text-sm">
@@ -43,7 +43,7 @@ export default function CartItem({
             <p>Color: {color}</p>
             <p>Size: {size}</p>
           </div>
-          <div className="flex gap-5 items-center text-gray-600 font-medium text-sm">
+          <div className="flex flex-col lg:flex-row gap-2 lg:gap-5  lg:items-center text-gray-600 font-medium text-sm hover:text-gray-800 transition ease-linear duration-150">
             <button
               onClick={() => dispatch(removeItems(id))}
               className="flex items-center gap-1 uppercase"
@@ -58,7 +58,7 @@ export default function CartItem({
         </div>
 
         {/* Right Content */}
-        <div className="w-1/4 flex flex-col justify-between items-end">
+        <div className="w-full md:w-5/12 lg:w-1/4 flex flex-col justify-between items-center md:items-end gap-4 md:gap-0">
           <div className="w-full flex flex-col items-center gap-2">
             <form className="w-11/12 flex items-center h-9 text-lg border rounded-md">
               {amount === 1 ? (
@@ -78,7 +78,9 @@ export default function CartItem({
             </form>
             <p className="font-medium text-sm">(Note, 1 piece)</p>
           </div>
-          <p className="text-lg font-bold text-gray-600">${price}</p>
+          <p className="text-2xl md:text-lg font-bold text-gray-600">
+            ${price}
+          </p>
         </div>
       </div>
     </div>

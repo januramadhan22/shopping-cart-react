@@ -20,9 +20,9 @@ function App() {
   return (
     <div className="w-screen min-h-screen bg-white flex flex-col items-center gap-6">
       <Header />
-      <div className="w-11/12 flex gap-6">
+      <div className="w-11/12 flex flex-col md:flex-row gap-6">
         {/* List Item */}
-        <div className="w-9/12 mb-5 p-5 flex flex-col gap-5 bg-white shadow-md rounded-md border">
+        <div className="w-full md:w-8/12 lg:w-9/12 mb-0 sm:mb-5 p-5 flex flex-col gap-5 bg-white shadow-md rounded-md border">
           <h3 className="text-lg font-bold text-gray-600">
             Cart ({totalCount} Items)
           </h3>
@@ -51,8 +51,8 @@ function App() {
         </div>
 
         {/* Checkout Form */}
-        <div className="w-3/12 relative">
-          <div className="w-full flex flex-col gap-5 sticky top-5">
+        <div className="w-full md:w-4/12 lg:w-3/12 relative mb-5">
+          <div className="w-full flex flex-col gap-5 sticky bottom-5 sm:top-5">
             <Checkout totalAmount={totalAmount} />
             <Discount />
           </div>

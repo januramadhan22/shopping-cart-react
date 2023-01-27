@@ -23,7 +23,7 @@ export default function Checkout({ totalAmount }) {
           <p>${totalAmount}</p>
         </div>
       </div>
-      <button className="w-full px-5 py-3 bg-blue-500 text-white font-semibold uppercase rounded-md">
+      <button className="w-full px-5 py-3 bg-blue-500 text-white font-semibold uppercase rounded-md hover:bg-blue-700 transition ease-linear duration-150">
         Go To Checkout
       </button>
     </div>
